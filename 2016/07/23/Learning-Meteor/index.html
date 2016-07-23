@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Learning Meteor | Jiří Krepl</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Meteor is awesome. A whole platform, not just some front-end JavaScript framework.
+This article covers history web applications’ development.I have just realized that my app does not need an API. API">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning Meteor">
+<meta property="og:url" content="http://yoursite.com/2016/07/23/Learning-Meteor/index.html">
+<meta property="og:site_name" content="Jiří Krepl">
+<meta property="og:description" content="Meteor is awesome. A whole platform, not just some front-end JavaScript framework.
+This article covers history web applications’ development.I have just realized that my app does not need an API. API">
+<meta property="og:image" content="http://yoursite.com/images/meteorHashAssets.png">
+<meta property="og:updated_time" content="2016-07-23T13:50:40.802Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Learning Meteor">
+<meta name="twitter:description" content="Meteor is awesome. A whole platform, not just some front-end JavaScript framework.
+This article covers history web applications’ development.I have just realized that my app does not need an API. API">
+<meta name="twitter:image" content="http://yoursite.com/images/meteorHashAssets.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Jiří Krepl" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Jiří Krepl</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Learning-Meteor" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/23/Learning-Meteor/" class="article-date">
+  <time datetime="2016-07-23T13:12:08.000Z" itemprop="datePublished">2016-07-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Learning Meteor
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><a href="https://www.meteor.com/" target="_blank" rel="external">Meteor</a> is awesome. A whole platform, not just some front-end JavaScript framework.</p>
+<p><a href="http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/" target="_blank" rel="external">This article</a> covers history web applications’ development.<br>I have just realized that my app does not need an <a href="http://nerds.airbnb.com/wp-content/uploads/2013/11/Screen-Shot-2013-11-07-at-10.29.32-AM.png" target="_blank" rel="external">API</a>. API is for third party developers. I don’t need a back-end and a front-end divided by an API.</p>
+<h2 id="Things-I-like-about-Meteor"><a href="#Things-I-like-about-Meteor" class="headerlink" title="Things I like about Meteor"></a>Things I like about Meteor</h2><p>I came from PHP and later Symfony with Angular background. Lastly I have worked with Gulp to build my own deployment model.<br>I just realized that in Meteor (if your app is simple enough) you don’t need to use Gulp at all. Meteor give you sophisticated build and deployment process for free.</p>
+<h3 id="Lifereload"><a href="#Lifereload" class="headerlink" title="Lifereload"></a>Lifereload</h3><p>When you start your your Meteor app on localhost, your project files are watched for changes. And browser reloads every time you save a file.<br>That means no more manual browser reloading. This mimic the same behavior with <a href="https://www.npmjs.com/package/gulp-watch" target="_blank" rel="external">gulp-watch</a> plugin and <a href="http://www.browsersync.io/" target="_blank" rel="external">Browsersync</a>. In Meteor it’s for free:D</p>
+<h3 id="No-script-and-link-tags"><a href="#No-script-and-link-tags" class="headerlink" title="No script and link tags"></a>No script and link tags</h3><p>In your <em>HTML</em> code you don’t need to use <code>&lt;script&gt;</code> and <code>&lt;link&gt;</code> elements link your <em>JavaScript</em> and <em>CSS</em> files. Just put them in some directory and Meteor link them automatically.</p>
+<h3 id="Minification"><a href="#Minification" class="headerlink" title="Minification"></a>Minification</h3><p>You don’t need to concat and minify static assets, it is done automatically</p>
+<h3 id="Cache-busting"><a href="#Cache-busting" class="headerlink" title="Cache busting"></a>Cache busting</h3><p>Automatic <a href="http://www.adopsinsider.com/ad-ops-basics/what-is-a-cache-buster-and-how-does-it-work/" target="_blank" rel="external">cache busting</a>. Meteor adds new hash tag to your *.js and *.css files every time you change those files. Then any updated files are freshly downloaded to your browser. </p>
+<p><img src="/images/meteorHashAssets.png" alt=""></p>
+<h2 id="Useful-Meteor-packages"><a href="#Useful-Meteor-packages" class="headerlink" title="Useful Meteor packages"></a>Useful Meteor packages</h2><p>These are packages I maybe will use. I am building multilang web app.</p>
+<p><a href="https://atmospherejs.com/yogiben/admin" target="_blank" rel="external">yogiben:admin</a> - A complete admin dashboard solution</p>
+<p><a href="https://atmospherejs.com/tap/i18n" target="_blank" rel="external">tap:i18n</a> - A comprehensive internationalization solution for Meteor</p>
+<p><a href="https://atmospherejs.com/tap/i18n-ui" target="_blank" rel="external">tap:i18n-ui</a> - User interface for the tap-i18n package</p>
+<p><a href="https://atmospherejs.com/tap/i18n-db" target="_blank" rel="external">tap:i18n-db</a> - Internationalization for Meteor Collections</p>
+<p><a href="https://atmospherejs.com/martino/iron-router-i18n" target="_blank" rel="external">martino:iron-router-i18n</a> - Router with i18n support. Lang parameters in URL</p>
+<p><a href="https://atmospherejs.com/iron/router" target="_blank" rel="external">iron:router</a> - Router for Meteor. Here is <a href="http://iron-meteor.github.io/iron-router/" target="_blank" rel="external">guide</a></p>
+<h2 id="Things-to-consider"><a href="#Things-to-consider" class="headerlink" title="Things to consider"></a>Things to consider</h2><p>There is an article with great name about intricacies of the framework: <a href="https://medium.com/@llaine/meteor-the-dark-side-of-the-moon-f885d8fdbf6a" target="_blank" rel="external">Meteor, the dark side of the moon</a><br>And here following discussion on <a href="https://crater.io/posts/8j5iT2Z8mgLcbxkGp" target="_blank" rel="external">Crater.io</a>.</p>
+<p>Deployment should be easy with <a href="https://github.com/arunoda/meteor-up" target="_blank" rel="external">Meteor up</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/07/23/Learning-Meteor/" data-id="ciqz8viwi0002qoe4q612lqhl" class="article-share-link">Delen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/07/23/SEO-notes/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Nieuwer</strong>
+      <div class="article-nav-title">
+        
+          SEO notes
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/23/Enable-Xdebug-on-Windows/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">Enable Xdebug on Windows</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archieven</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recente berichten</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/23/SEO-notes/">SEO notes</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/23/Learning-Meteor/">Learning Meteor</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/23/Enable-Xdebug-on-Windows/">Enable Xdebug on Windows</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/23/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Jiří Krepl<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
