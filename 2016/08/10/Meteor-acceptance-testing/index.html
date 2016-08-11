@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/08/10/Meteor-acceptance-testing/index.html">
 <meta property="og:site_name" content="Jiří Krepl">
 <meta property="og:description" content="Acceptance tests tests the features of your app. Those features are tested it the same way as users would use those features.We want to automate (as oppose to manual testing) this process. So test wil">
-<meta property="og:updated_time" content="2016-08-11T05:53:55.600Z">
+<meta property="og:updated_time" content="2016-08-11T05:55:40.671Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Meteor acceptance testing">
 <meta name="twitter:description" content="Acceptance tests tests the features of your app. Those features are tested it the same way as users would use those features.We want to automate (as oppose to manual testing) this process. So test wil">
@@ -86,7 +86,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><em>Acceptance tests</em> tests the features of your app. Those features are tested it the same way as users would use those features.<br>We want to automate (as oppose to manual testing) this process. So test will start browser, which interact with your app’s UI in the same way as any user.</p>
-<p>Do you want to improve <a href="https://github.com/jirikrepl/jirikrepl.com-hexo/blob/master/source/_posts/Meteor-acceptance-testing.md" target="_blank" rel="external">this article</a>? Pass me a pull request.</p>
 <p>Sounds simple enough, right? But when you writing your tests, you can create technology debt even without knowing it.<br>Before you start reading or after you finish, consider reading <a href="https://github.com/xolvio/automated-testing-best-practices/blob/master/content/TESTING-SUCCESS-FACTORS.md" target="_blank" rel="external">Testing Success Factors</a> from <a href="http://xolv.io/" target="_blank" rel="external">Xolv.io</a> - masters of testing.      </p>
 <p>We will need some software tools. I will list those here, then I will dive into installation / usage details down below.</p>
 <ul>
@@ -189,12 +188,13 @@ module.exports = {
 };
 </code></pre><p>Pass <em>config.js</em> as a first argument to <em>Chimp</em>.</p>
 <pre><code>$ chimp chimp/config.js --ddp=http://localhost:3000 --watch --mocha --path=chimp/tests
-</code></pre><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>With help of page object and other smart technologies we can maintain our acceptance test base with more ease. Test will become less fragile.<br>Test can be run after each commit locally, which could be annoying after while. Better way is to set up CI environment to run tests there. In my next article, I want to explore this option as well.           </p>
+</code></pre><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>With help of page object and other smart technologies we can maintain our acceptance test base with more ease. Test will become less fragile.<br>Test can be run after each commit locally, which could be annoying after while. Better way is to set up CI environment to run tests there. In my next article, I want to explore this option as well.</p>
+<p>Do you want to improve <a href="https://github.com/jirikrepl/jirikrepl.com-hexo/blob/master/source/_posts/Meteor-acceptance-testing.md" target="_blank" rel="external">this article</a>? Pass me a pull request.           </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/10/Meteor-acceptance-testing/" data-id="cirpwtie30002nke4v0l41c06" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/10/Meteor-acceptance-testing/" data-id="cirpwuz3c0005h4e4hwrw0st3" class="article-share-link">Share</a>
       
       
     </footer>
