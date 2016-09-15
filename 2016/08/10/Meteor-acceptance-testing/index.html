@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/08/10/Meteor-acceptance-testing/index.html">
 <meta property="og:site_name" content="Jiří Krepl">
 <meta property="og:description" content="Acceptance tests tests the features of your app. Those features are tested it the same way as users would use those features.We want to automate (as oppose to manual testing) this process. So test wil">
-<meta property="og:updated_time" content="2016-08-11T05:55:40.671Z">
+<meta property="og:updated_time" content="2016-09-15T17:28:37.542Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Meteor acceptance testing">
 <meta name="twitter:description" content="Acceptance tests tests the features of your app. Those features are tested it the same way as users would use those features.We want to automate (as oppose to manual testing) this process. So test wil">
@@ -102,71 +102,13 @@
 <h4 id="page-js"><a href="#page-js" class="headerlink" title="page.js"></a>page.js</h4><p><em>page.js</em> is a base class which other <em>page object</em> classes will extend.<br>In this particular code to get <code>open()</code> method working, you need to install <code>url</code> module:</p>
 <pre><code>$ npm install --save-dev url
 </code></pre><p>More on using <a href="https://guide.meteor.com/using-npm-packages.html" target="_blank" rel="external">npm with Meteor</a>.</p>
-<pre><code>// page.js
-&apos;use strict&apos;;
-
-import urlModule from &apos;url&apos;;
-
-export default class Page {
-
-    // opens any of given relative path
-    open(path) {
-        browser.url(urlModule.resolve(process.env.ROOT_URL, path));
-    }
-}
-</code></pre><h4 id="lesson-page-js"><a href="#lesson-page-js" class="headerlink" title="lesson.page.js"></a>lesson.page.js</h4><p><em>lesson.page.js</em> extends <em>page.js</em>. It can contain any logic of real lesson’s <em>HTML</em> page.<br>In this code <code>browser.element()</code> refers to webdriver.io instance and <em>element()</em> method. In Chimp <code>browser</code> object is global, you don’t need to import anything.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// page.js</span></div><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> urlModule <span class="keyword">from</span> <span class="string">'url'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Page</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// opens any of given relative path</span></div><div class="line">    open(path) &#123;</div><div class="line">        browser.url(urlModule.resolve(process.env.ROOT_URL, path));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="lesson-page-js"><a href="#lesson-page-js" class="headerlink" title="lesson.page.js"></a>lesson.page.js</h4><p><em>lesson.page.js</em> extends <em>page.js</em>. It can contain any logic of real lesson’s <em>HTML</em> page.<br>In this code <code>browser.element()</code> refers to webdriver.io instance and <em>element()</em> method. In Chimp <code>browser</code> object is global, you don’t need to import anything.</p>
 <p>Note also that in <a href="http://webdriver.io/api/protocol/element.html" target="_blank" rel="external">webdriver.io</a>: <code>client === browser</code></p>
-<pre><code>// lesson.page.js
-&apos;use strict&apos;;
-
-import Page from &apos;./page&apos;;
-
-export default class LessonsPage extends Page {
-
-    open() {
-        super.open(&apos;kurz-zakladni&apos;);
-    }
-
-    get newLesson() {
-        return browser.element(&apos;#new-lesson&apos;);
-    }
-
-    get lessonNameInput() {
-        return browser.element(&apos;#lesson-name-input&apos;);
-    }
-
-    get newLessonOK() {
-        return browser.element(&apos;#new-lesson-ok&apos;);
-    }
-
-    get lessonName() {
-        return browser.element(&apos;#lessonName&apos;)
-    }
-}
-</code></pre><h4 id="lessonTest-js"><a href="#lessonTest-js" class="headerlink" title="lessonTest.js"></a>lessonTest.js</h4><p>Finally our test file <code>lessonTest.js</code>. We use <a href="https://mochajs.org/#getting-started" target="_blank" rel="external">mocha’s</a> <code>describe()</code> and <code>it()</code> functions.</p>
-<pre><code>// lessonTest.js
-&apos;use strict&apos;;
-
-import LessonsPage from &apos;./pageObjects/lessons.page&apos;;
-
-describe(&apos;On essons page&apos;, () =&gt; {
-    let lessonPage = new LessonsPage();
-    let lessonName = &apos;Test lesson 1&apos;
-
-    // this test has @dev annotation
-    // it will be run in Chimp --watch mode
-    // more details below
-    it(&apos;you should create new lesson @dev&apos;, () =&gt; {
-        lessonPage.open();
-        lessonPage.newLesson.click();
-        lessonPage.lessonNameInput.setValue(lessonName);
-        lessonPage.newLessonOK.click();
-
-        // assert result with Chai
-        lessonPage.lessonName.should.equal(lessonName);
-    });
-});
-</code></pre><h2 id="Chimp"><a href="#Chimp" class="headerlink" title="Chimp"></a>Chimp</h2><p>We will run tests with <a href="https://chimp.readme.io/" target="_blank" rel="external">Chimp</a>. It elegantly integrates with Meteor. Install it globally with npm:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// lesson.page.js</span></div><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> Page <span class="keyword">from</span> <span class="string">'./page'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">LessonsPage</span> <span class="keyword">extends</span> <span class="title">Page</span> </span>&#123;</div><div class="line"></div><div class="line">    open() &#123;</div><div class="line">        <span class="keyword">super</span>.open(<span class="string">'kurz-zakladni'</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    get newLesson() &#123;</div><div class="line">        <span class="keyword">return</span> browser.element(<span class="string">'#new-lesson'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    get lessonNameInput() &#123;</div><div class="line">        <span class="keyword">return</span> browser.element(<span class="string">'#lesson-name-input'</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    get newLessonOK() &#123;</div><div class="line">        <span class="keyword">return</span> browser.element(<span class="string">'#new-lesson-ok'</span>);</div><div class="line">    &#125;</div><div class="line">        </div><div class="line">    get lessonName() &#123;</div><div class="line">        <span class="keyword">return</span> browser.element(<span class="string">'#lessonName'</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="lessonTest-js"><a href="#lessonTest-js" class="headerlink" title="lessonTest.js"></a>lessonTest.js</h4><p>Finally our test file <code>lessonTest.js</code>. We use <a href="https://mochajs.org/#getting-started" target="_blank" rel="external">mocha’s</a> <code>describe()</code> and <code>it()</code> functions.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// lessonTest.js</span></div><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> LessonsPage <span class="keyword">from</span> <span class="string">'./pageObjects/lessons.page'</span>;</div><div class="line"></div><div class="line">describe(<span class="string">'On essons page'</span>, () =&gt; &#123;</div><div class="line">    <span class="keyword">let</span> lessonPage = <span class="keyword">new</span> LessonsPage();</div><div class="line">    <span class="keyword">let</span> lessonName = <span class="string">'Test lesson 1'</span></div><div class="line">    </div><div class="line">    <span class="comment">// this test has @dev annotation</span></div><div class="line">    <span class="comment">// it will be run in Chimp --watch mode</span></div><div class="line">    <span class="comment">// more details below</span></div><div class="line">    it(<span class="string">'you should create new lesson @dev'</span>, () =&gt; &#123;</div><div class="line">        lessonPage.open();</div><div class="line">        lessonPage.newLesson.click();</div><div class="line">        lessonPage.lessonNameInput.setValue(lessonName);</div><div class="line">        lessonPage.newLessonOK.click();</div><div class="line">        </div><div class="line">        <span class="comment">// assert result with Chai</span></div><div class="line">        lessonPage.lessonName.should.equal(lessonName);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="Chimp"><a href="#Chimp" class="headerlink" title="Chimp"></a>Chimp</h2><p>We will run tests with <a href="https://chimp.readme.io/" target="_blank" rel="external">Chimp</a>. It elegantly integrates with Meteor. Install it globally with npm:</p>
 <pre><code>$ npm i -g chimp
 </code></pre><h4 id="Run-tests"><a href="#Run-tests" class="headerlink" title="Run tests"></a>Run tests</h4><p>Firstly start your Meteor app on port 3000 (default port).</p>
 <pre><code>$ cd my-meteor-app
@@ -177,16 +119,8 @@ $ meteor
 <p>With <code>--watch</code> flag only tests with <code>@dev</code> annotation are run. Without <code>--watch</code> all test are run <em>once</em>.</p>
 <h4 id="Optional-webdriver-io-configuration-file"><a href="#Optional-webdriver-io-configuration-file" class="headerlink" title="Optional webdriver.io configuration file"></a>Optional webdriver.io configuration file</h4><p>Create config file to change behavior of <em>webdriver.io</em>.</p>
 <p>It can be handy to change time limit for <a href="http://webdriver.io/api/utility/waitForVisible.html" target="_blank" rel="external">waitForVisible()</a> method. Default time limit is 500 ms, which can be sometimes too short.</p>
-<pre><code> // config.js
-&apos;use strict&apos;;
-
-// it has to be ES5 export, otherwise it would not work with Chimp
-module.exports = {
-    webdriverio: {
-        waitforTimeout: 2000
-    }
-};
-</code></pre><p>Pass <em>config.js</em> as a first argument to <em>Chimp</em>.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">// config.js</span></div><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="comment">// it has to be ES5 export, otherwise it would not work with Chimp</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    webdriverio: &#123;</div><div class="line">        waitforTimeout: <span class="number">2000</span></div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>Pass <em>config.js</em> as a first argument to <em>Chimp</em>.</p>
 <pre><code>$ chimp chimp/config.js --ddp=http://localhost:3000 --watch --mocha --path=chimp/tests
 </code></pre><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>With help of page object and other smart technologies we can maintain our acceptance test base with more ease. Test will become less fragile.<br>Test can be run after each commit locally, which could be annoying after while. Better way is to set up CI environment to run tests there. In my next article, I want to explore this option as well.</p>
 <p>Do you want to improve <a href="https://github.com/jirikrepl/jirikrepl.com-hexo/blob/master/source/_posts/Meteor-acceptance-testing.md" target="_blank" rel="external">this article</a>? Pass me a pull request.           </p>
@@ -194,7 +128,7 @@ module.exports = {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/10/Meteor-acceptance-testing/" data-id="cirpwuz3c0005h4e4hwrw0st3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/10/Meteor-acceptance-testing/" data-id="cit1plyhl000544d2tva379q0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -202,6 +136,15 @@ module.exports = {
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/09/13/Meteor-Codeship/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Meteor + Codeship
+        
+      </div>
+    </a>
   
   
     <a href="/2016/07/23/SEO-notes/" id="article-nav-older" class="article-nav-link-wrap">
@@ -230,7 +173,7 @@ module.exports = {
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
     </div>
   </div>
 
@@ -241,6 +184,10 @@ module.exports = {
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/09/13/Meteor-Codeship/">Meteor + Codeship</a>
+          </li>
         
           <li>
             <a href="/2016/08/10/Meteor-acceptance-testing/">Meteor acceptance testing</a>
@@ -256,10 +203,6 @@ module.exports = {
         
           <li>
             <a href="/2016/07/23/Enable-Xdebug-on-Windows/">Enable Xdebug on Windows</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/23/hello-world/">Hello World</a>
           </li>
         
       </ul>
