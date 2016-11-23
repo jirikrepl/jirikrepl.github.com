@@ -85,6 +85,13 @@
       
         <p>In my last <a href="/2016/08/10/Meteor-acceptance-testing/" title="Article">Article</a> I wrote about acceptance tests in <a href="https://www.meteor.com/" target="_blank" rel="external">Meteor</a>. We could run those test periodically locally e.g. before every push to VCS.<br>Much better solution is to use some Continuous Integration (CI) server. CI can build our app, install dependencies and run tests after each push to VCS.</p>
 <p>My favourite CI server right now is <a href="codeship.com">Codeship</a>. They have great <a href="https://en.wikipedia.org/wiki/User_experience_design" target="_blank" rel="external">UX</a> and offer free plan for Bitbucket.<br>At Codeship you have to set commands which install your app and then run your tests. This is done trough <em>project settings</em> at Codeship website.</p>
+<script async src="//"></script>
+<!-- Zk1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3407068354362458" data-ad-slot="6515190520" data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="Setup-commands"><a href="#Setup-commands" class="headerlink" title="Setup commands"></a>Setup commands</h2><p>This section should install anything which is needed to run your app and tests.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Install node</span></div><div class="line">nvm install 4.0</div><div class="line"><span class="comment"># Install npm packages</span></div><div class="line">npm install -g chimp coffee-script spacejam@1.6.2-rc.1</div><div class="line"></div><div class="line"><span class="comment"># Install meteor</span></div><div class="line">curl -o meteor_install_script.sh https://install.meteor.com/</div><div class="line">chmod +x meteor_install_script.sh</div><div class="line"><span class="comment"># get sudo for Meteor install script </span></div><div class="line">sed -i <span class="string">"s/type sudo &gt;\/dev\/null 2&gt;&amp;1/\ false /g"</span> meteor_install_script.sh</div><div class="line">./meteor_install_script.sh</div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:~/.meteor/</div><div class="line">meteor --version</div><div class="line"></div><div class="line"><span class="comment"># Install any other app depenedcies</span></div><div class="line"><span class="comment"># clone of your app at this location</span></div><div class="line"><span class="built_in">cd</span> ~/<span class="built_in">clone</span>/ &amp;&amp; npm install</div></pre></td></tr></table></figure>
 <h2 id="Test-commands"><a href="#Test-commands" class="headerlink" title="Test commands"></a>Test commands</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/<span class="built_in">clone</span></div><div class="line"></div><div class="line"><span class="comment"># run unit tests</span></div><div class="line">spacejam <span class="built_in">test</span> --driver-package=practicalmeteor:mocha-console-runner</div><div class="line"></div><div class="line"><span class="comment"># run full app integration tests </span></div><div class="line">spacejam <span class="built_in">test</span> --full-app --driver-package=practicalmeteor:mocha-console-runner</div><div class="line"></div><div class="line"><span class="comment"># start your in background </span></div><div class="line">nohup bash -c <span class="string">"meteor --settings=settings.json 2&gt;&amp;1 &amp;"</span> &amp;&amp; sleep 3m; cat nohup.out</div><div class="line"><span class="comment"># then Chimp will use that instance and run acceptance tests</span></div><div class="line">chimp --ddp=http://localhost:3000 --mocha --path=chimp/tests</div></pre></td></tr></table></figure>
@@ -93,7 +100,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/09/13/Meteor-Codeship/" data-id="cit5yqpci0003ngd2bc39coj4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/09/13/Meteor-Codeship/" data-id="civunm4xv0003s4d27q1zatvr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -168,7 +175,7 @@ $ meteor
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/10/Meteor-acceptance-testing/" data-id="cit5yqpck0004ngd24zse6cbg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/10/Meteor-acceptance-testing/" data-id="civunm4xy0004s4d2yxiqpgdj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -209,7 +216,7 @@ $ meteor
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/23/SEO-notes/" data-id="cit5yqpcn0005ngd292lfl6wr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/23/SEO-notes/" data-id="civunm4y10005s4d2v5zp69j5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -263,7 +270,7 @@ $ meteor
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/23/Learning-Meteor/" data-id="cit5yqpcf0002ngd2dt9y7qp2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/23/Learning-Meteor/" data-id="civunm4xt0002s4d2e9ummaet" class="article-share-link">Share</a>
       
       
     </footer>
@@ -316,7 +323,7 @@ xdebug.remote_host = &quot;127.0.0.1&quot;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/23/Enable-Xdebug-on-Windows/" data-id="cit5yqpc90001ngd2z853jhna" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/23/Enable-Xdebug-on-Windows/" data-id="civunm4xn0001s4d27s6z0rn3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -361,7 +368,7 @@ xdebug.remote_host = &quot;127.0.0.1&quot;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/13/hello-world/" data-id="cit5yqpcp0006ngd2hr1qj8lk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/13/hello-world/" data-id="civunm4y30006s4d2ns8eqs2z" class="article-share-link">Share</a>
       
       
     </footer>
