@@ -85,11 +85,12 @@
       
         <p>In my last <a href="/2016/08/10/Meteor-acceptance-testing/" title="Article">Article</a> I wrote about acceptance tests in <a href="https://www.meteor.com/" target="_blank" rel="external">Meteor</a>. We could run those test periodically locally e.g. before every push to VCS.<br>Much better solution is to use some Continuous Integration (CI) server. CI can build our app, install dependencies and run tests after each push to VCS.</p>
 <p>My favourite CI server right now is <a href="codeship.com">Codeship</a>. They have great <a href="https://en.wikipedia.org/wiki/User_experience_design" target="_blank" rel="external">UX</a> and offer free plan for Bitbucket.<br>At Codeship you have to set commands which install your app and then run your tests. This is done trough <em>project settings</em> at Codeship website.</p>
-<script async src="//"></script>
-<!-- Zk1 -->
-<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3407068354362458" data-ad-slot="6515190520" data-ad-format="auto"></ins>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
-(adsbygoogle = window.adsbygoogle || []).push({});
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-3407068354362458",
+    enable_page_level_ads: true
+  });
 </script>
 
 <h2 id="Setup-commands"><a href="#Setup-commands" class="headerlink" title="Setup commands"></a>Setup commands</h2><p>This section should install anything which is needed to run your app and tests.</p>
@@ -100,7 +101,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/09/13/Meteor-Codeship/" data-id="civunm4xv0003s4d27q1zatvr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/09/13/Meteor-Codeship/" data-id="ciwoqg9v80001p8d2ijpuiaal" class="article-share-link">Share</a>
       
       
     </footer>
@@ -166,7 +167,7 @@ $ meteor
 <p>With <code>--watch</code> flag only tests with <code>@dev</code> annotation are run. Without <code>--watch</code> all test are run <em>once</em>.</p>
 <h4 id="Optional-webdriver-io-configuration-file"><a href="#Optional-webdriver-io-configuration-file" class="headerlink" title="Optional webdriver.io configuration file"></a>Optional webdriver.io configuration file</h4><p>Create config file to change behavior of <em>webdriver.io</em>.</p>
 <p>It can be handy to change time limit for <a href="http://webdriver.io/api/utility/waitForVisible.html" target="_blank" rel="external">waitForVisible()</a> method. Default time limit is 500 ms, which can be sometimes too short.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">// config.js</span></div><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="comment">// it has to be ES5 export, otherwise it would not work with Chimp</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    webdriverio: &#123;</div><div class="line">        waitforTimeout: <span class="number">2000</span></div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">// config.js</span></div><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="comment">// it has to be ES5 export, otherwise it would not work with Chimp</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    <span class="attr">webdriverio</span>: &#123;</div><div class="line">        <span class="attr">waitforTimeout</span>: <span class="number">2000</span></div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>Pass <em>config.js</em> as a first argument to <em>Chimp</em>.</p>
 <pre><code>$ chimp chimp/config.js --ddp=http://localhost:3000 --watch --mocha --path=chimp/tests
 </code></pre><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>With help of page object and other smart technologies we can maintain our acceptance test base with more ease. Test will become less fragile.<br>Test can be run after each commit locally, which could be annoying after while. Better way is to set up CI environment to run tests there. In my next article, I want to explore this option as well.</p>
@@ -175,7 +176,7 @@ $ meteor
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/10/Meteor-acceptance-testing/" data-id="civunm4xy0004s4d2yxiqpgdj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/10/Meteor-acceptance-testing/" data-id="ciwoqg9vj0004p8d2f9vp4zxv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -216,7 +217,7 @@ $ meteor
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/23/SEO-notes/" data-id="civunm4y10005s4d2v5zp69j5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/23/SEO-notes/" data-id="ciwoqg9vo0006p8d2qa6tanst" class="article-share-link">Share</a>
       
       
     </footer>
@@ -270,7 +271,7 @@ $ meteor
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/23/Learning-Meteor/" data-id="civunm4xt0002s4d2e9ummaet" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/23/Learning-Meteor/" data-id="ciwoqg9vh0003p8d26e2fykx6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -323,7 +324,7 @@ xdebug.remote_host = &quot;127.0.0.1&quot;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/23/Enable-Xdebug-on-Windows/" data-id="civunm4xn0001s4d27s6z0rn3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/23/Enable-Xdebug-on-Windows/" data-id="ciwoqg9ve0002p8d279uty7jp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -368,7 +369,7 @@ xdebug.remote_host = &quot;127.0.0.1&quot;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/13/hello-world/" data-id="civunm4y30006s4d2ns8eqs2z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/13/hello-world/" data-id="ciwoqg9vm0005p8d2eaeecrpz" class="article-share-link">Share</a>
       
       
     </footer>
