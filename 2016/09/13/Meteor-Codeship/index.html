@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-3407068354362458",
+    enable_page_level_ads: true
+  });
+</script>
+
   <meta charset="utf-8">
   
   <title>Meteor + Codeship | Jiří Krepl</title>
@@ -11,7 +20,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/09/13/Meteor-Codeship/index.html">
 <meta property="og:site_name" content="Jiří Krepl">
 <meta property="og:description" content="In my last Article I wrote about acceptance tests in Meteor. We could run those test periodically locally e.g. before every push to VCS.Much better solution is to use some Continuous Integration (CI)">
-<meta property="og:updated_time" content="2016-12-14T09:25:13.495Z">
+<meta property="og:updated_time" content="2017-02-28T14:41:55.314Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Meteor + Codeship">
 <meta name="twitter:description" content="In my last Article I wrote about acceptance tests in Meteor. We could run those test periodically locally e.g. before every push to VCS.Much better solution is to use some Continuous Integration (CI)">
@@ -54,7 +63,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -87,14 +96,6 @@
       
         <p>In my last <a href="/2016/08/10/Meteor-acceptance-testing/" title="Article">Article</a> I wrote about acceptance tests in <a href="https://www.meteor.com/" target="_blank" rel="external">Meteor</a>. We could run those test periodically locally e.g. before every push to VCS.<br>Much better solution is to use some Continuous Integration (CI) server. CI can build our app, install dependencies and run tests after each push to VCS.</p>
 <p>My favourite CI server right now is <a href="codeship.com">Codeship</a>. They have great <a href="https://en.wikipedia.org/wiki/User_experience_design" target="_blank" rel="external">UX</a> and offer free plan for Bitbucket.<br>At Codeship you have to set commands which install your app and then run your tests. This is done trough <em>project settings</em> at Codeship website.</p>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-3407068354362458",
-    enable_page_level_ads: true
-  });
-</script>
-
 <h2 id="Setup-commands"><a href="#Setup-commands" class="headerlink" title="Setup commands"></a>Setup commands</h2><p>This section should install anything which is needed to run your app and tests.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Install node</span></div><div class="line">nvm install 4.0</div><div class="line"><span class="comment"># Install npm packages</span></div><div class="line">npm install -g chimp coffee-script spacejam@1.6.2-rc.1</div><div class="line"></div><div class="line"><span class="comment"># Install meteor</span></div><div class="line">curl -o meteor_install_script.sh https://install.meteor.com/</div><div class="line">chmod +x meteor_install_script.sh</div><div class="line"><span class="comment"># get sudo for Meteor install script </span></div><div class="line">sed -i <span class="string">"s/type sudo &gt;\/dev\/null 2&gt;&amp;1/\ false /g"</span> meteor_install_script.sh</div><div class="line">./meteor_install_script.sh</div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:~/.meteor/</div><div class="line">meteor --version</div><div class="line"></div><div class="line"><span class="comment"># Install any other app depenedcies</span></div><div class="line"><span class="comment"># clone of your app at this location</span></div><div class="line"><span class="built_in">cd</span> ~/<span class="built_in">clone</span>/ &amp;&amp; npm install</div></pre></td></tr></table></figure>
 <h2 id="Test-commands"><a href="#Test-commands" class="headerlink" title="Test commands"></a>Test commands</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/<span class="built_in">clone</span></div><div class="line"></div><div class="line"><span class="comment"># run unit tests</span></div><div class="line">spacejam <span class="built_in">test</span> --driver-package=practicalmeteor:mocha-console-runner</div><div class="line"></div><div class="line"><span class="comment"># run full app integration tests </span></div><div class="line">spacejam <span class="built_in">test</span> --full-app --driver-package=practicalmeteor:mocha-console-runner</div><div class="line"></div><div class="line"><span class="comment"># start your in background </span></div><div class="line">nohup bash -c <span class="string">"meteor --settings=settings.json 2&gt;&amp;1 &amp;"</span> &amp;&amp; sleep 3m; cat nohup.out</div><div class="line"><span class="comment"># then Chimp will use that instance and run acceptance tests</span></div><div class="line">chimp --ddp=http://localhost:3000 --mocha --path=chimp/tests</div></pre></td></tr></table></figure>
@@ -103,7 +104,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/09/13/Meteor-Codeship/" data-id="ciwoqg9v80001p8d2ijpuiaal" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/09/13/Meteor-Codeship/" data-id="cizpndpwo0003tkd2w8mtt9sa" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -114,7 +115,7 @@
   
   
     <a href="/2016/08/10/Meteor-acceptance-testing/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Ouder</strong>
       <div class="article-nav-title">Meteor acceptance testing</div>
     </a>
   
@@ -137,7 +138,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archieven</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
     </div>
@@ -147,7 +148,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Recente berichten</h3>
     <div class="widget">
       <ul>
         
@@ -183,7 +184,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2016 Jiří Krepl<br>
+      &copy; 2017 Jiří Krepl<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
