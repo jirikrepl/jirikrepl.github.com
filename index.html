@@ -67,6 +67,51 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Top-ten-Meteor-tips-and-tricks" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/10/Top-ten-Meteor-tips-and-tricks/" class="article-date">
+  <time datetime="2017-06-10T15:02:11.000Z" itemprop="datePublished">2017-06-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/10/Top-ten-Meteor-tips-and-tricks/">Top ten Meteor tips and tricks</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-Use-validated-methods"><a href="#1-Use-validated-methods" class="headerlink" title="#1 Use validated methods"></a>#1 Use validated methods</h2><p><a href="https://github.com/meteor/validated-method" target="_blank" rel="external">Validated methods</a> use object which represents your method. Any method can be exported in place of its definition and imported anywhere.<br>This is better then call methods by a magic string name <code>Meteor.call(&#39;someMagicNameOfMethod&#39;);</code></p>
+<p>Another great think is that you have build in argument validation which uses <a href="https://github.com/aldeed/meteor-simple-schema" target="_blank" rel="external">simple schema</a>.</p>
+<h4 id="How-to-create-and-call-validated-method"><a href="#How-to-create-and-call-validated-method" class="headerlink" title="How to create and call validated method"></a>How to create and call validated method</h4><p>Define method <em>getExerciseProgress</em> on server:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> getExerciseProgress = <span class="keyword">new</span> ValidatedMethod(&#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'exercises.getExerciseProgress'</span>,</div><div class="line">    <span class="attr">validate</span>: <span class="keyword">new</span> SimpleSchema(&#123;<span class="attr">lessonUrl</span>: Lessons.simpleSchema().schema(<span class="string">'lessonUrl'</span>)&#125;).validator(),</div><div class="line">    run(&#123;lessonUrl&#125;) &#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>Then call method <em>getExerciseProgress</em> on client:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// import method at the beginning of the file</span></div><div class="line"><span class="keyword">import</span> &#123;getExerciseProgress&#125; <span class="keyword">from</span> <span class="string">"/imports/api/exercises/methods"</span>;</div><div class="line"></div><div class="line"><span class="comment">// call the method</span></div><div class="line">getExerciseProgress.call(&#123;<span class="attr">lessonUrl</span>: <span class="keyword">this</span>.lessonUrl&#125;, (error, result) =&gt; &#123;</div><div class="line">    <span class="comment">// do something here with error or result     </span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="2-Don’t-use-HTML-comments-use-Blaze-comments"><a href="#2-Don’t-use-HTML-comments-use-Blaze-comments" class="headerlink" title="#2 Don’t use HTML comments, use Blaze comments"></a>#2 Don’t use HTML comments, use Blaze comments</h2><p>Don’t you html comments when working with Blaze:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- this is HTML comment --&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"section"</span>&gt;</span></div><div class="line">  ...</div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>HTML comments will be bundled your into your production code. You don’t want that, because every byte counts.<br>Moreover why provide any extra information about how your frontend works.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;&#123;! this is Blaze single line comment&#125;&#125; </div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"section"</span>&gt;</span></div><div class="line">  ...</div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">&#123;&#123;!-- This is a block comment.</div><div class="line">We can write &#123;&#123;foo&#125;&#125; and it doesn't matter.</div><div class="line">&#123;&#123;#with x&#125;&#125;This code is commented out.&#123;&#123;/with&#125;&#125;</div><div class="line">--&#125;&#125;</div></pre></td></tr></table></figure>
+<p>See more in <a href="http://blazejs.org/api/spacebars.html#Comment-Tags" target="_blank" rel="external">documentation</a>.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/10/Top-ten-Meteor-tips-and-tricks/" data-id="cj3rf5ozf0006cwd2wus5rdxb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Meteor-Codeship" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/09/13/Meteor-Codeship/" class="article-date">
@@ -99,7 +144,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/09/13/Meteor-Codeship/" data-id="cj0urhv1w0003iwd23khrnyr8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/09/13/Meteor-Codeship/" data-id="cj3rf5oza0003cwd235y6o6a3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -174,7 +219,7 @@ $ meteor
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/10/Meteor-acceptance-testing/" data-id="cj0urhv1y0004iwd2iezag1x5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/10/Meteor-acceptance-testing/" data-id="cj3rf5ozc0004cwd2yi6s0e8d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -215,7 +260,7 @@ $ meteor
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/23/SEO-notes/" data-id="cj0urhv200005iwd24o5kfm5i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/23/SEO-notes/" data-id="cj3rf5ozd0005cwd2c649p9hf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -269,7 +314,7 @@ $ meteor
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/23/Learning-Meteor/" data-id="cj0urhv1u0002iwd2cf8gv1ol" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/23/Learning-Meteor/" data-id="cj3rf5oz80002cwd2nu2yuwey" class="article-share-link">Share</a>
       
       
     </footer>
@@ -322,7 +367,7 @@ xdebug.remote_host = &quot;127.0.0.1&quot;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/23/Enable-Xdebug-on-Windows/" data-id="cj0urhv1p0001iwd2pz4sf0ul" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/23/Enable-Xdebug-on-Windows/" data-id="cj3rf5oz50001cwd2pmbksq9t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -367,7 +412,7 @@ xdebug.remote_host = &quot;127.0.0.1&quot;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/13/hello-world/" data-id="cj0urhv220006iwd2hcwbibcv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/13/hello-world/" data-id="cj3rf5ozf0007cwd2o4up5bi4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -394,7 +439,7 @@ xdebug.remote_host = &quot;127.0.0.1&quot;
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
     </div>
   </div>
 
@@ -405,6 +450,10 @@ xdebug.remote_host = &quot;127.0.0.1&quot;
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/06/10/Top-ten-Meteor-tips-and-tricks/">Top ten Meteor tips and tricks</a>
+          </li>
         
           <li>
             <a href="/2016/09/13/Meteor-Codeship/">Meteor + Codeship</a>
@@ -420,10 +469,6 @@ xdebug.remote_host = &quot;127.0.0.1&quot;
         
           <li>
             <a href="/2016/07/23/Learning-Meteor/">Learning Meteor</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/23/Enable-Xdebug-on-Windows/">Enable Xdebug on Windows</a>
           </li>
         
       </ul>
