@@ -13,16 +13,16 @@
   
   <title>Top ten Meteor tips and tricks | Jiří Krepl</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#1 Use validated methodsValidated methods use object which represents your method. Any method can be exported in place of its definition and imported anywhere.This is better then call methods by a mag">
+  <meta name="description" content="#1 Use validated methodsValidated method use object which represents your method.Any method can be exported from the place of its definition and imported anywhere (using ES6 import/export).This is bet">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Top ten Meteor tips and tricks">
 <meta property="og:url" content="http://yoursite.com/2017/06/10/Top-ten-Meteor-tips-and-tricks/index.html">
 <meta property="og:site_name" content="Jiří Krepl">
-<meta property="og:description" content="#1 Use validated methodsValidated methods use object which represents your method. Any method can be exported in place of its definition and imported anywhere.This is better then call methods by a mag">
-<meta property="og:updated_time" content="2017-06-10T17:22:36.395Z">
+<meta property="og:description" content="#1 Use validated methodsValidated method use object which represents your method.Any method can be exported from the place of its definition and imported anywhere (using ES6 import/export).This is bet">
+<meta property="og:updated_time" content="2017-06-10T17:26:45.929Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Top ten Meteor tips and tricks">
-<meta name="twitter:description" content="#1 Use validated methodsValidated methods use object which represents your method. Any method can be exported in place of its definition and imported anywhere.This is better then call methods by a mag">
+<meta name="twitter:description" content="#1 Use validated methodsValidated method use object which represents your method.Any method can be exported from the place of its definition and imported anywhere (using ES6 import/export).This is bet">
   
     <link rel="alternate" href="/atom.xml" title="Jiří Krepl" type="application/atom+xml">
   
@@ -91,7 +91,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-Use-validated-methods"><a href="#1-Use-validated-methods" class="headerlink" title="#1 Use validated methods"></a>#1 Use validated methods</h2><p><a href="https://github.com/meteor/validated-method" target="_blank" rel="external">Validated methods</a> use object which represents your method. Any method can be exported in place of its definition and imported anywhere.<br>This is better then call methods by a magic string name <code>Meteor.call(&#39;someMagicNameOfMethod&#39;);</code></p>
+        <h2 id="1-Use-validated-methods"><a href="#1-Use-validated-methods" class="headerlink" title="#1 Use validated methods"></a>#1 Use validated methods</h2><p><a href="https://github.com/meteor/validated-method" target="_blank" rel="external">Validated method</a> use object which represents your method.<br>Any method can be exported from the place of its definition and imported anywhere (using ES6 import/export).<br>This is better then call methods by a magic string name <code>Meteor.call(&#39;someMagicNameOfMethod&#39;);</code></p>
 <p>Another great think is that you have build in argument validation which uses <a href="https://github.com/aldeed/meteor-simple-schema" target="_blank" rel="external">simple schema</a>.</p>
 <h4 id="How-to-create-and-call-validated-method"><a href="#How-to-create-and-call-validated-method" class="headerlink" title="How to create and call validated method"></a>How to create and call validated method</h4><p>Define method <em>getExerciseProgress</em> on server:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> getExerciseProgress = <span class="keyword">new</span> ValidatedMethod(&#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'exercises.getExerciseProgress'</span>,</div><div class="line">    <span class="attr">validate</span>: <span class="keyword">new</span> SimpleSchema(&#123;<span class="attr">lessonUrl</span>: Lessons.simpleSchema().schema(<span class="string">'lessonUrl'</span>)&#125;).validator(),</div><div class="line">    run(&#123;lessonUrl&#125;) &#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
 <p>Then call method <em>getExerciseProgress</em> on client:</p>
@@ -104,7 +104,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/10/Top-ten-Meteor-tips-and-tricks/" data-id="cj3rf5ozf0006cwd2wus5rdxb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/10/Top-ten-Meteor-tips-and-tricks/" data-id="cj3rk01c6000614d2fdho7zid" class="article-share-link">Share</a>
       
       
     </footer>
